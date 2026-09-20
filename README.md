@@ -1,9 +1,3 @@
-
-
-
-![](https://profile-calendar.vercel.app/image?&textColor=%230F172A)
-
-
 <div align="center">
   <img alt="每日一言" src="https://raw.githubusercontent.com/MakotoRyuu/MakotoRyuu/main/quotes/daily-quote.svg" width="816"/>
 </div>
