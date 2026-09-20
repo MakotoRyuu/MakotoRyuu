@@ -2,7 +2,8 @@
 
 # Hi, I'm MakotoRyuu 👋
 
-一点一滴，持续构建。
+<!-- 我想在这里展示名言警句的svg（动态的，每天更新） -->
+
 
 ![MakotoRyuu 的每日日历](assets/profile-calendar.svg)
 
