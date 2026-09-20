@@ -1,23 +1,12 @@
-<!--
 
-![](https://t.mwm.moe/fj)
-![](https://lipsum.app/random/1600x900)
-![](https://api.timelessq.com/bing/random)
-
-<div align="center">
-  <img alt="avatar" src="./static/img/avatar.gif" height="240";weight:"auto"/>
-
-<p>
-一个被社达抛弃的底层带砖失业民工，靠着画饼充饥维系着最基本的生存。<br>
-<small>An underclass unemployed vocational graduate discarded by Social Darwinism, surviving on empty promises.</small>
-</p>
-</div>
-
--->
 
 
 ![](https://profile-calendar.vercel.app/image?&textColor=%230F172A)
 
+
+<div align="center">
+  <img alt="每日一言" src="https://raw.githubusercontent.com/MakotoRyuu/MakotoRyuu/main/quotes/daily-quote.svg" width="816"/>
+</div>
 
 <div align="center">
   <img alt="节假日日历" src="https://raw.githubusercontent.com/MakotoRyuu/MakotoRyuu/main/holiday/holiday-calendar.svg" width="816"/>
