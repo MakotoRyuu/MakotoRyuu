@@ -1,5 +1,5 @@
 <div align="center">
-  <img alt="每日一言" src="https://raw.githubusercontent.com/MakotoRyuu/MakotoRyuu/main/quotes/daily-quote.svg?v=right-aligned-2" width="816"/>
+  <img alt="每日一言" src="https://raw.githubusercontent.com/MakotoRyuu/MakotoRyuu/main/quotes/daily-quote.svg?v=b42bb73583b7" width="816"/>
 </div>
 
 <div align="center">
