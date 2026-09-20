@@ -32,10 +32,16 @@ def render(today, quote, font_data=None):
     text, author = quote
     attribution = ' —— ' + author if author else ''
     combined = text + attribution
-    # Keep quote and attribution on one line, shrinking unusually long entries.
-    units = sum(0 if unicodedata.combining(c) else 2 if unicodedata.east_asian_width(c) in 'WF' else 1 for c in combined)
-    font_size = min(22, max(14, 714 / max(units, 1) * 2))
-    fit = ' textLength="714" lengthAdjust="spacingAndGlyphs"' if units * font_size / 2 > 714 else ''
+    # Reserve a separate right-aligned author area with a gap from the quote.
+    def units(value):
+        return sum(0 if unicodedata.combining(c) else 2 if unicodedata.east_asian_width(c) in 'WF' else 1 for c in value)
+
+    author_width = min(280, units(attribution) * 11) if author else 0
+    quote_width = 714 - author_width - (28 if author else 0)
+    font_size = min(22, max(14, quote_width / max(units(text), 1) * 2))
+    fit = f' textLength="{quote_width}" lengthAdjust="spacingAndGlyphs"' if units(text) * font_size / 2 > quote_width else ''
+    author_fit = f' textLength="{author_width}" lengthAdjust="spacingAndGlyphs"' if units(attribution) * 11 > author_width else ''
+    author_svg = f'<text x="776" y="40" text-anchor="end" font-size="22" fill="#57606a"{author_fit}>{escape(attribution.strip())}</text>' if author else ''
     css = ''
     if font_data:
         encoded = base64.b64encode(font_data).decode('ascii')
@@ -45,7 +51,8 @@ def render(today, quote, font_data=None):
 <style>{css}text{{font-family:QuoteHandwriting,"PingFang SC","Microsoft YaHei",sans-serif;}}</style>
 <rect width="100%" height="100%" fill="#ffffff"/>
 <rect x="40" y="18" width="3" height="28" rx="1.5" fill="#1f883d"/>
-<text x="62" y="40" font-size="{font_size:.2f}" fill="#24292f"{fit}>{escape(text)}<tspan fill="#57606a">{escape(attribution)}</tspan></text>
+<text x="62" y="40" font-size="{font_size:.2f}" fill="#24292f"{fit}>{escape(text)}</text>
+{author_svg}
 </svg>
 '''
 
