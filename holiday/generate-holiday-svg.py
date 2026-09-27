@@ -146,8 +146,6 @@ def collect_upcoming_holidays(today: datetime.date, holiday_map: dict, months_ah
         start, end = dates[0], dates[-1]
         if end >= today:  # 假期未结束
             days = (start - today).days
-            if days < 0:
-                days = 0
             result.append((name, start, end, days, (end - start).days + 1))
     return result
 
@@ -376,6 +374,10 @@ def main():
         cy = count_y + i * 20
         if days == 0:
             text = f"🎉 今天是 {name} 假期第一天！共 {total_days} 天"
+        elif days < 0:
+            elapsed = (today - start).days + 1
+            remaining = (end - today).days
+            text = f"🎉 今天是 {name} 假期第 {elapsed} 天 · 还剩 {remaining} 天 · 共 {total_days} 天"
         else:
             text = f"📅 {name} ({start.month}/{start.day}–{end.month}/{end.day}) · 还有 {days} 天 · 共 {total_days} 天"
         body_parts.append(
@@ -422,7 +424,10 @@ def main():
 
     print(f"✅ 已生成: {out_path}")
     for name, start, end, days, total in upcoming:
-        print(f"   📅 {name} ({start.month}/{start.day}-{end.month}/{end.day}) 还有 {days} 天 · 共 {total} 天")
+        if days < 0:
+            print(f"   📅 {name} ({start.month}/{start.day}-{end.month}/{end.day}) 假期第 {-days + 1} 天 · 共 {total} 天")
+        else:
+            print(f"   📅 {name} ({start.month}/{start.day}-{end.month}/{end.day}) 还有 {days} 天 · 共 {total} 天")
 
     # 供 GitHub Actions 判断是否有变化
     if "--check" in sys.argv:
